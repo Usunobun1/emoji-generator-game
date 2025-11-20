@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cute Emoji Generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: #FFD5E5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      border: 4px solid #ffb7d5; /* pastel border */
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 350px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    #emoji {
+      font-size: 8vw;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      display: inline-block;
+    }
+
+    button {
+      padding: 12px 18px;
+      background: #ff74a6;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 4vw;
+      transition: 0.2s ease;
+      margin: 5px;
+    }
+
+    button:hover {
+      opacity: 0.85;
+      transform: scale(1.03);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.5); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 400px) {
+      .card {
+        padding: 20px;
+      }
+
+      button {
+        font-size: 5vw;
+        padding: 10px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div id="emoji">🐰</div>
+    <button id="btn">Generate Emoji</button>
+    <button id="copy-btn">Copy Emoji</button>
+  </div>
+
+  <script>
+    const emojis = [
+      "🐰","🐹","🐱","🐶","🦊","🐻","🐼","🧸","🐨","🦁","🐷","🐸","🐔",
+      "💕","💖","💗","💞","💓","💘","💝","💟","🦋","🫧","🍂","🪻","🪐",
+      "🌸","🎀","✨","💫","⭐","☁️","🍓","🩷","🦄","🍥","🌈","🦢","🐚",
+      "🧁","🍰","🍬","🍭","🍡","🍧","🍨","🥞","🧸","🎂","🍪","🍫","🍩"
+    ];
+
+    const btn = document.getElementById("btn");
+    const copyBtn = document.getElementById("copy-btn");
+    const emojiBox = document.getElementById("emoji");
+
+    btn.addEventListener("click", function() {
+      const random = Math.floor(Math.random() * emojis.length);
+      emojiBox.style.opacity = 0;
+      setTimeout(() => {
+        emojiBox.textContent = emojis[random];
+        emojiBox.style.opacity = 1;
+        emojiBox.style.animation = 'pop 0.3s ease';
+        setTimeout(() => { emojiBox.style.animation = ''; }, 300);
+      }, 150);
+    });
+
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(emojiBox.textContent).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.textContent = 'Copy Emoji'; }, 1200);
+      });
+    });
+  </script>
+
+</body>
+</html>
