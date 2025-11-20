@@ -15,7 +15,7 @@ Experimental Cute Emoji Generator – a playful project I built while experiment
 
 ## Demo & Screenshots 
 [Cute Emoji Generator](https://usunobun1.github.io/emoji-generator-game/)
-
+([photo](emojigame.png))
 ## Built With
 - HTML, CSS & JavaScript  
 - Google Fonts (`Press Start 2P`)  
